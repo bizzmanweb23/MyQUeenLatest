@@ -157,6 +157,13 @@ Route::middleware(['auth'])->name('MLM.')->prefix('MLM')->group(function () {
     ]);
 
     // End Loyality Points withdraw
+    
+    Route::any('/transfer_funds_history', [MLMPointsTransferContoller::class, 'transfer_funds_history'])->name('transfer_funds_history');
+	Route::any('/store_transfer_funds', [MLMPointsTransferContoller::class, 'store_transfer_funds'])->name('store_transfer_funds');
+	Route::resource('transfer_points', MLMPointsTransferContoller::class)->names([
+        'index'  => 'transfer_points.index',
+        'store' => 'transfer_points.store'
+    ]);
 
     //start Loyality Points withdraw
     Route::any('/redeem_loyality_bonus', [MLMLoyalityPointsContoller::class, 'redeem_loyality_bonus'])->name('redeem_loyality_bonus');
